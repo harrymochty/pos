@@ -19,11 +19,12 @@
                     onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
                     {{ __('') }}<i class='bx bxs-log-out-circle'></i> Logout</a></li>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-            </form>
+
             </li>
         </ul>
     </div>
 </nav>
+<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+    @csrf
+</form>
 <!-- NAVBAR -->

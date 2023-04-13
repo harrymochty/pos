@@ -1,8 +1,8 @@
 <!-- SIDEBAR -->
 <section id="sidebar">
-    <a href="#" class="brand"><i class='bx bxs-smile icon'></i> TokoKita</a>
+    <a href="#" class="brand"><i class='bx bxs-smile icon'></i> {{ config('app.name') }}</a>
     <ul class="side-menu">
-        <li><a href="#" class="active"><i class='bx bxs-dashboard icon'></i> Dashboard</a></li>
+        <li><a href="{{ route('dashboard') }}" class="active"><i class='bx bxs-dashboard icon'></i> Dashboard</a></li>
         <li class="divider" data-text="main">Main</li>
 
         <li>
@@ -18,6 +18,7 @@
                     class='bx bx-chevron-right icon-right'></i></a>
             <ul class="side-dropdown">
                 <li><a href="#">Add Categories</a></li>
+                <li><a href="{{ route('category.index') }}">Data Categories</a></li>
             </ul>
         </li>
 

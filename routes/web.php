@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +19,9 @@ Route::get('/', fn() => redirect()->route('login'));
 Auth::routes();
 
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/category/data', [CategoriesController::class, 'data']);
+    Route::resource('/category', CategoriesController::class);
+});
