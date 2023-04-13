@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CategoriesController extends Controller
 {
@@ -13,7 +15,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        return view('category.index');
+        $data = Categories::orderBy('name', 'desc')->paginate(10);
+        return view('category.index')->with('data', $data);
     }
 
     /**
@@ -23,7 +26,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('category.create');
     }
 
     /**
@@ -34,7 +37,20 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Session::flash('name', $request->name);
+        $request->validate([
+            'name' => 'required|unique:categories,name',
+        ], [
+            'name.required' => 'Nama Tidak Boleh Kosong',
+            'name.unique' => 'Category Sudah Tersedia',
+        ]);
+
+        $data = [
+            'name' => $request->name,
+        ];
+        Categories::create($data);
+        return redirect()->to('category')->with('success', 'Berhasil Menambahkan Data');
+
     }
 
     /**
