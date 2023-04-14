@@ -21,9 +21,9 @@
             <div class="box-body table-responsive">
                 <table class="table table-bordered">
                     <thead>
-                        <th style="width: 5%">No</th>
+                        <th style="width: 3%">No</th>
                         <th>Nama Category</th>
-                        <th style="width: 10%"><i class="bx bx-cog"></i></th>
+                        <th style="width: 8%"><i class="bx bx-cog"></i></th>
                     </thead>
                     <tbody>
                         <?php $i = $data->firstItem(); ?>
@@ -34,7 +34,6 @@
                                 <td>
                                     <a href='{{ url('category/' . $item->id . '/edit') }}'
                                         class="btn btn-primary btn-sm"><span class="bx bx-edit"></span></a>
-                                    <span> | </span>
                                     <form class="d-inline" action="{{ url('category/' . $item->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')

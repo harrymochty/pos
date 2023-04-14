@@ -21,7 +21,7 @@
             <div class="box-body table-responsive">
                 <table class="table table-bordered">
                     <thead>
-                        <th style="width: 5%">No</th>
+                        <th style="width: 3%">No</th>
                         <th>Nama Product</th>
                         <th>Category</th>
                         <th>Merk</th>
@@ -44,8 +44,15 @@
                                 <td>{{ format_rupiah($item->harga_jual) }}</td>
                                 <td>{{ $item->stock }}</td>
                                 <td>
-                                    <a href='' class="btn btn-primary btn-sm"><span class="bx bx-edit"></span></a>
-                                    <a href='' class="btn btn-danger btn-sm"><span class="bx bx-trash"></span></a>
+                                    <a href='{{ url('product/' . $item->id . '/edit') }}'
+                                        class="btn btn-primary btn-sm"><span class="bx bx-edit"></span></a>
+                                    <form class="d-inline" action="{{ url('product/' . $item->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" name="submit" class="btn btn-danger btn-sm"><span
+                                                class="bx bx-trash"></span>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                             <?php $i++; ?>

@@ -1,12 +1,12 @@
 @extends('layouts.master')
 
 @section('title')
-    Create Category
+    Edit Category
 @endsection
 
 @section('breadcrumbs')
     @parent
-    <li><a href="#" class="active">Create Category</a></li>
+    <li><a href="#" class="active">Edit Category</a></li>
 @endsection
 
 
@@ -15,7 +15,7 @@
     <div class="data">
         <div class="content-data">
             <div class="head">
-                <h3>Create Data Category</h3>
+                <h3>Edit Data Category</h3>
             </div>
             @include('alert.alert')
 

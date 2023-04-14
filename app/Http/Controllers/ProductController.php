@@ -42,7 +42,6 @@ class ProductController extends Controller
             'name' => 'required|unique:categories,name',
         ], [
             'name.required' => 'Nama Tidak Boleh Kosong',
-            'name.unique' => 'Category Sudah Tersedia',
         ]);
 
         $data = [
@@ -78,9 +77,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $data = Products::where('id', $id)->first();
-        return view('product.edit')->with('data', $data);
-
+        $cate = Categories::all();
+        $data = Products::with('category')->findorfail($id);
+        return view('product.edit', compact('data', 'cate'));
     }
 
     /**
@@ -92,7 +91,25 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:categories,name',
+        ], [
+            'name.required' => 'Nama Tidak Boleh Kosong',
+            'name.unique' => 'Category Sudah Tersedia',
+        ]);
+
+        $data = [
+            'name' => $request->name,
+            'category_id' => $request->category_id,
+            'merk' => $request->merk,
+            'harga_beli' => $request->harga_beli,
+            'diskon' => $request->diskon,
+            'harga_jual' => $request->harga_jual,
+            'stock' => $request->stock,
+        ];
+        Products::where('id', $id)->update($data);
+        return redirect()->to('product')->with('success', 'Berhasil Update Data');
+
     }
 
     /**
@@ -103,6 +120,10 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Products::find($id);
+        $product->delete();
+
+        return redirect()->to('product')->with('success', 'Berhasil Menghapus Data');
+
     }
 }
