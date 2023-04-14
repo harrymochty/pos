@@ -26,10 +26,10 @@
                         <th>Category</th>
                         <th>Merk</th>
                         <th>Harga Beli</th>
-                        <th style="width: 5%">Diskon</th>
+                        <th style="width: 3%">Diskon</th>
                         <th>Harga Jual</th>
-                        <th style="width: 5%">Stock</th>
-                        <th style="width: 10%"><i class="bx bx-cog"></i></th>
+                        <th style="width: 3%">Stock</th>
+                        <th style="width: 8%"><i class="bx bx-cog"></i></th>
                     </thead>
                     <tbody>
                         <?php $i = $data->firstItem(); ?>

@@ -33,7 +33,7 @@
                         <label for="category_id" class="col-sm-2 col-form-label">Category Product</label>
                         <div class="col-sm-10">
                             <select class="form-control" name="category_id" id="category_id">
-                                <option selected="true" disabled>Pilih Category</option>
+                                <option disable value>Pilih Category</option>
                                 @foreach ($cate as $item)
                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach
