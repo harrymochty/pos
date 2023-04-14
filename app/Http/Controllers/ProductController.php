@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categories;
+use App\Models\Products;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
-class CategoriesController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $data = Categories::orderBy('name', 'desc')->paginate(10);
-        return view('category.index')->with('data', $data);
+        $data = Products::with('category')->paginate(10);
+        return view('product.index')->with('data', $data);
     }
 
     /**
@@ -26,7 +26,8 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return view('category.create');
+        $cate = Categories::all();
+        return view('product.create', compact('cate'));
     }
 
     /**
@@ -37,7 +38,6 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        Session::flash('name', $request->name);
         $request->validate([
             'name' => 'required|unique:categories,name',
         ], [
@@ -47,9 +47,15 @@ class CategoriesController extends Controller
 
         $data = [
             'name' => $request->name,
+            'category_id' => $request->category_id,
+            'merk' => $request->merk,
+            'harga_beli' => $request->harga_beli,
+            'diskon' => $request->diskon,
+            'harga_jual' => $request->harga_jual,
+            'stock' => $request->stock,
         ];
-        Categories::create($data);
-        return redirect()->to('category')->with('success', 'Berhasil Menambahkan Data');
+        Products::create($data);
+        return redirect()->to('product')->with('success', 'Berhasil Menambahkan Data');
 
     }
 
@@ -72,8 +78,7 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        $data = Categories::where('id', $id)->first();
-        return view('category.edit')->with('data', $data);
+        //
     }
 
     /**
@@ -85,19 +90,7 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required|unique:categories,name',
-        ], [
-            'name.required' => 'Nama Tidak Boleh Kosong',
-            'name.unique' => 'Category Sudah Tersedia',
-        ]);
-
-        $data = [
-            'name' => $request->name,
-        ];
-        Categories::where('id', $id)->update($data);
-        return redirect()->to('category')->with('success', 'Berhasil Menambahkan Data');
-
+        //
     }
 
     /**
@@ -108,10 +101,6 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        $category = Categories::find($id);
-        $category->delete();
-
-        return redirect()->to('category')->with('success', 'Berhasil Menghapus Data');
-
+        //
     }
 }

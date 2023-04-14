@@ -1,20 +1,20 @@
 @extends('layouts.master')
 
 @section('title')
-    Category
+    Product
 @endsection
 
 @section('breadcrumbs')
     @parent
-    <li><a href="#" class="active">Category</a></li>
+    <li><a href="#" class="active">Product</a></li>
 @endsection
 
 @section('content')
     <div class="data">
         <div class="content-data">
             <div class="head">
-                <h3>Data Category</h3>
-                <a href="{{ route('category.create') }}"><button type="button" class="btn btn-outline-primary">Tambah
+                <h3>Data Product</h3>
+                <a href="{{ route('product.create') }}"><button type="button" class="btn btn-outline-primary">Tambah
                         Data</button></a>
             </div>
             @include('alert.alert')
@@ -22,7 +22,13 @@
                 <table class="table table-bordered">
                     <thead>
                         <th style="width: 5%">No</th>
-                        <th>Nama Category</th>
+                        <th>Nama Product</th>
+                        <th>Category</th>
+                        <th>Merk</th>
+                        <th>Harga Beli</th>
+                        <th style="width: 5%">Diskon</th>
+                        <th>Harga Jual</th>
+                        <th style="width: 5%">Stock</th>
                         <th style="width: 10%"><i class="bx bx-cog"></i></th>
                     </thead>
                     <tbody>
@@ -31,17 +37,15 @@
                             <tr>
                                 <td>{{ $i }}</td>
                                 <td>{{ $item->name }}</td>
+                                <td>{{ $item->category->name ?? '' }}</td>
+                                <td>{{ $item->merk }}</td>
+                                <td>{{ format_rupiah($item->harga_beli) }}</td>
+                                <td>{{ $item->diskon }}</td>
+                                <td>{{ format_rupiah($item->harga_jual) }}</td>
+                                <td>{{ $item->stock }}</td>
                                 <td>
-                                    <a href='{{ url('category/' . $item->id . '/edit') }}'
-                                        class="btn btn-primary btn-sm"><span class="bx bx-edit"></span></a>
-                                    <span> | </span>
-                                    <form class="d-inline" action="{{ url('category/' . $item->id) }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" name="submit" class="btn btn-danger btn-sm"><span
-                                                class="bx bx-trash"></span>
-                                        </button>
-                                    </form>
+                                    <a href='' class="btn btn-primary btn-sm"><span class="bx bx-edit"></span></a>
+                                    <a href='' class="btn btn-danger btn-sm"><span class="bx bx-trash"></span></a>
                                 </td>
                             </tr>
                             <?php $i++; ?>

@@ -9,7 +9,8 @@
             <a href="#"><i class='bx bxs-package icon'></i> Products <i
                     class='bx bx-chevron-right icon-right'></i></a>
             <ul class="side-dropdown">
-                <li><a href="#">Add Products</a></li>
+                <li><a href="{{ route('product.index') }}">Data Products</a></li>
+                <li><a href="{{ route('product.create') }}">Add Products</a></li>
             </ul>
         </li>
 
@@ -17,8 +18,8 @@
             <a href="#"><i class='bx bx-category icon'></i> Categories <i
                     class='bx bx-chevron-right icon-right'></i></a>
             <ul class="side-dropdown">
-                <li><a href="{{ route('category.create') }}">Add Categories</a></li>
                 <li><a href="{{ route('category.index') }}">Data Categories</a></li>
+                <li><a href="{{ route('category.create') }}">Add Categories</a></li>
             </ul>
         </li>
 
