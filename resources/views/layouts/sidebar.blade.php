@@ -27,7 +27,8 @@
             <a href="#"><i class='bx bxs-truck icon'></i> Supplier <i
                     class='bx bx-chevron-right icon-right'></i></a>
             <ul class="side-dropdown">
-                <li><a href="#">Add Supplier</a></li>
+                <li><a href="{{ route('supplier.index') }}">Data Supplier</a></li>
+                <li><a href="{{ route('supplier.create') }}">Add Supplier</a></li>
             </ul>
         </li>
 
@@ -44,7 +45,14 @@
 
         <li class="divider" data-text="transaction">Transaction</li>
 
-        <li><a href="#"><i class='bx bx-money icon'></i> Pengeluaran</a></li>
+        <li>
+            <a href="#"><i class='bx bx-money icon'></i> Pengeluaran <i
+                    class='bx bx-chevron-right icon-right'></i></a>
+            <ul class="side-dropdown">
+                <li><a href="{{ route('pengeluaran.index') }}">Data Pengeluaran</a></li>
+                <li><a href="{{ route('pengeluaran.create') }}">Add Pengeluaran</a></li>
+            </ul>
+
         <li><a href="#"><i class='bx bxs-cart-download icon'></i> Pembelian</a></li>
         <li><a href="#"><i class='bx bxs-cart-add icon'></i> Penjualan</a></li>
         <li><a href="#"><i class='bx bx-table icon'></i> Transaksi Lama</a></li>

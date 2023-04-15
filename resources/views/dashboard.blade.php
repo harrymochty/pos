@@ -15,7 +15,7 @@
             <div class="head">
                 <div>
                     <h2>1500</h2>
-                    <p>Traffic</p>
+                    <p>Product</p>
                 </div>
                 <i class='bx bx-trending-up icon'></i>
             </div>
@@ -26,7 +26,7 @@
             <div class="head">
                 <div>
                     <h2>234</h2>
-                    <p>Sales</p>
+                    <p>Category</p>
                 </div>
                 <i class='bx bx-trending-down icon down'></i>
             </div>

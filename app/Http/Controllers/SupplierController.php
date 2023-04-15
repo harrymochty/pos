@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categories;
+use App\Models\Suppliers;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
-class CategoriesController extends Controller
+class SupplierController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,9 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $data = Categories::orderBy('name', 'desc')->paginate(10);
-        return view('category.index')->with('data', $data);
+        $data = Suppliers::orderBy('name', 'desc')->paginate(10);
+        return view('supplier.index')->with('data', $data);
+
     }
 
     /**
@@ -26,7 +26,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return view('category.create');
+        return view('supplier.create');
     }
 
     /**
@@ -37,19 +37,23 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        Session::flash('name', $request->name);
         $request->validate([
-            'name' => 'required|unique:categories,name',
+            'name' => 'required',
+            'alamat' => 'required',
+            'telepon' => 'required',
         ], [
             'name.required' => 'Nama Tidak Boleh Kosong',
-            'name.unique' => 'Category Sudah Tersedia',
+            'alamat.required' => 'Alamat Tidak Boleh Kosong',
+            'telepon.required' => 'Telepon Tidak Boleh Kosong',
         ]);
 
         $data = [
             'name' => $request->name,
+            'alamat' => $request->alamat,
+            'telepon' => $request->telepon,
         ];
-        Categories::create($data);
-        return redirect()->to('category')->with('success', 'Berhasil Menambahkan Data');
+        Suppliers::create($data);
+        return redirect()->to('supplier')->with('success', 'Berhasil Menambahkan Data');
 
     }
 
@@ -72,8 +76,9 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        $data = Categories::where('id', $id)->first();
-        return view('category.edit')->with('data', $data);
+        $data = Suppliers::where('id', $id)->first();
+        return view('supplier.edit')->with('data', $data);
+
     }
 
     /**
@@ -94,9 +99,11 @@ class CategoriesController extends Controller
 
         $data = [
             'name' => $request->name,
+            'alamat' => $request->alamat,
+            'telepon' => $request->telepon,
         ];
-        Categories::where('id', $id)->update($data);
-        return redirect()->to('category')->with('success', 'Berhasil Update Data');
+        Suppliers::where('id', $id)->update($data);
+        return redirect()->to('supplier')->with('success', 'Berhasil Update Data');
 
     }
 
@@ -108,10 +115,10 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        $category = Categories::find($id);
-        $category->delete();
+        $supplier = Suppliers::find($id);
+        $supplier->delete();
 
-        return redirect()->to('category')->with('success', 'Berhasil Menghapus Data');
+        return redirect()->to('supplier')->with('success', 'Berhasil Menghapus Data');
 
     }
 }

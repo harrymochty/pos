@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,5 +30,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/product/data', [ProductController::class, 'data']);
     Route::resource('/product', ProductController::class);
+
+    Route::get('/supplier/data', [SupplierController::class, 'data']);
+    Route::resource('/supplier', SupplierController::class);
+
+    Route::get('/pengeluaran/data', [PengeluaranController::class, 'data']);
+    Route::resource('/pengeluaran', PengeluaranController::class);
 
 });
